@@ -29,3 +29,6 @@ BConway\TrackerBundle\Entity\Entry:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
+    lifecycleCallbacks:
+            prePersist: [ setCreatedAt, setUpdatedAt ]
+            preUpdate: [ setUpdatedAt ]
