@@ -79,8 +79,8 @@ fos_user:
         form:
             type: bconway_user_profile
     from_email:
-        address:        noreply@bcipg.com
-        sender_name:    Weight goal tracker
+        address:        %mailer_fromaddress%
+        sender_name:    %mailer_sendername$
 
 jms_security_extra:
     # Whether you want to secure all services (true), or only secure specific
