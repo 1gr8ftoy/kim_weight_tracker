@@ -1,0 +1,8 @@
+ul.ui-menu {
+  max-height: 100px;
+  height: 100px;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: .25em;
+  margin-bottom: 1em;
+}

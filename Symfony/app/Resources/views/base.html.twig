@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Weight Deficit Goal Tracker{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets 'css/*' output='css/compiled/main.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            {% if type == 'error' %}
+                <div class="flash-error ui-state-error ui-corner-bottom">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="flash-notice ui-state-highlight ui-corner-bottom">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+        <div id="container">
+            <div id="user_nav">
+                {% block navigation %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    Logged in as <strong>{{ app.user.username }}</strong> ({{ app.user.email }}).
+                    <a href="{{ path('fos_user_profile_edit') }}">{{ 'Edit profile'|trans }}</a> |
+                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+                {% else %}
+                    <a href="{{ path('fos_user_registration_register') }}">{{ 'Sign up'|trans }}</a> |
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans }}</a>
+                {% endif %}
+                {% endblock %}
+            </div>
+            <div id="content" style="{% block body_styles %}{% endblock %}">
+                {% block body %}{% endblock %}
+            </div>
+            <div id="footer">
+                {% block footer %}
+                    <a href="{{ path('b_conway_tracker_entry_create') }}">Weigh In</a> -
+                    <a href="{{ path('b_conway_tracker_goal_list') }}">Manage Goals</a> -
+                    <a href="{{ path('b_conway_tracker_entry_view') }}">View History</a>
+                {% endblock %}
+            </div>
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            {% javascripts
+                'js/jquery-1.10.2.js'
+                'js/jquery-ui-1.10.3.custom.js'
+                'js/*'
+                output='js/compiled/main.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

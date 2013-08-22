@@ -1,0 +1,212 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+body {
+    margin:0px; padding:0px;
+    text-align:center;
+    font-family: Arial, Helvetica, Tahoma, sans-serif;
+    font-size: .9em;
+    background-color: white;
+    position: relative;
+}
+
+div#footer {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #FF00CC;
+}
+
+a:hover {
+    color: #AD5687;
+}
+
+a:active {
+    color: #ff0000;
+}
+
+div#content a:link, div#content a:visited {
+    color: white;
+}
+
+div#content a:hover {
+    color: #AD5687;
+}
+
+div#content a:active {
+    color: #ff0000;
+}
+
+ul a:link, ul a:visited {
+    color: #778 !important;
+}
+
+ul.ui-menu li {
+    list-style-type: none;
+}
+
+hr {
+    background-color: #6633FF;
+    color: purple;
+    height: 1px;
+    border: none;
+}
+
+div#container {
+    position: relative;
+    padding: 0px;
+    width:800px;
+    margin:0px auto;
+}
+
+div#container div#content {
+    text-align:left;
+    padding: 0px 15px 15px 15px;
+    border:1px solid #333;
+    background-color:#FF5BC3;
+    height: 1%;
+    overflow: hidden;
+    -moz-border-radius:3px;
+    -khtml-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+div#container div#content-stats {
+    margin: 0px auto;
+    text-align: left;
+    padding: 0px 15px 15px 15px;
+    border: 1px solid #989898;
+    background-color: #FF75CC;
+    height: 1%;
+    overflow: hidden;
+    -moz-border-radius:3px;
+    -khtml-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    margin-bottom: 15px;
+    color: black;
+}
+
+#single-goal-stats {
+    font-size: 0.7em;
+}
+
+#total-goal-stats {
+    font-size: 0.7em;
+}
+
+#user_nav {
+    float: right;
+    margin: 15px;
+}
+
+div.label {
+    min-width: 100px;
+    float: left;
+    padding-top: 4px;
+}
+
+div#edit_goal div.field + div.field {
+    margin-top: 10px;
+}
+
+div#edit_goal div.actions {
+    padding-top: 10px;
+}
+
+input.input {
+    width: 150px;
+}
+
+.ui-state-highlight, .ui-state-error {
+    padding: 5px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px; width: 1px;
+    margin: -1px; padding: 0; border: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+#single-goal_progress-bar_container {
+    float: right;
+//right: 100px;
+    position: relative;
+    width: 150px;
+    border: 0px solid #000000;
+    height: 18px;
+}
+
+#single-goal_progress-bar_border {
+    float: left;
+    left: 0px;
+    top: 0px;
+    margin-top: 4px;
+    position: relative;
+    width: 100px;
+    border: 1px solid #000000;
+    height: 10px;
+    -moz-border-radius:4px;
+    -khtml-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+}
+
+#single-goal_progress-bar_bar {
+    height: 100%;
+    background-color: black;
+    left: 0px;
+    top: 0px;
+    position: relative;
+    width: 0px;
+    border: 0px solid #000000;
+    -moz-border-radius:3px;
+    -khtml-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+
+#single-goal_progress-text {
+    top: 0px;
+    right: 0px;
+    margin-top: 5px;
+    position: relative;
+    clear: none;
+    float: right;
+}
+
+#error_explanation {
+    width: auto !important;
+}

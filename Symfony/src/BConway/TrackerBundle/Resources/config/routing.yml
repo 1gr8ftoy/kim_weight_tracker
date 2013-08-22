@@ -1,0 +1,39 @@
+b_conway_tracker_entry_create:
+    pattern:  /
+    defaults: { _controller: BConwayTrackerBundle:Entry:create }
+
+b_conway_tracker_entry_view:
+    pattern: /entries
+    defaults: { _controller: BConwayTrackerBundle:Entry:view }
+    options:
+        expose: true
+
+b_conway_tracker_entry_edit:
+    pattern: /entry/{id}/edit
+    defaults: { _controller: BConwayTrackerBundle:Entry:edit}
+
+b_conway_tracker_entry_delete:
+    pattern: /entry/{id}/delete
+    defaults: { _controller: BConwayTrackerBundle:Entry:delete}
+
+b_conway_tracker_goal_view_stats:
+    pattern: /goal/{id}/stats
+    defaults: { _controller: BConwayTrackerBundle:Goal:viewStats }
+    options:
+        expose: true
+
+b_conway_tracker_goal_list:
+    pattern: /goals
+    defaults: { _controller: BConwayTrackerBundle:Goal:list }
+
+b_conway_tracker_goal_edit:
+    pattern: /goal/{id}/edit
+    defaults: { _controller: BConwayTrackerBundle:Goal:edit }
+    options:
+        expose: true
+
+b_conway_tracker_goal_create:
+    pattern: /goal/create
+    defaults: { _controller: BConwayTrackerBundle:Goal:create }
+    options:
+        expose: true

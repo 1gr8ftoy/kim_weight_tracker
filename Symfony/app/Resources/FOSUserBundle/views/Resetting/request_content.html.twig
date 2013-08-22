@@ -1,0 +1,17 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Forgot your password?</h2>
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        <label for="username">{{ 'Email'|trans }}</label><br />
+        <input type="text" id="username" size=30 name="username" required="required" />
+    </div>
+    <div style="margin-top: 10px;">
+        <input type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>
+<br />
+<a href="{{ path('fos_user_security_login') }}">Sign in</a>
+<br />
+<a href="{{ path('fos_user_registration_register') }}">Sign up</a>

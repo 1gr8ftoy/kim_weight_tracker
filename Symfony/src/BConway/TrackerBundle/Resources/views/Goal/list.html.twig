@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div style="font-family: Lobster; padding: 5px; width: 100%; border-bottom: 1px solid #D6D6D6; text-align: center;
+        color: #E5E5E5; font-size: 1.7em; margin-bottom: 15px;">
+        Manage Goals
+    </div>
+
+    <div style="float: left; width: 40%;">
+        <ul id="goals_list">
+            {% for goal in goals %}
+                <li><a href="javascript:showGoalSettings({{ goal.id }});">{{ goal.endDate|date("m/d/Y") }} - {{ goal.endWeight }}lbs</a></li>
+            {% endfor %}
+        </ul>
+
+        <input value="Create a new goal" type="submit" onClick="createNewGoal();" />
+    </div>
+
+    <div id="loading" style="width: 40%; float: right; height: 100px; display: none; background: url({{ asset('images/ajax-loader.gif') }}) no-repeat center center; "></div>
+    <div id="edit_goal" style="float: right; width: 40%;"></div>
+{% endblock body %}

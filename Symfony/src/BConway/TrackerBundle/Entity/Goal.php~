@@ -1,0 +1,220 @@
+<?php
+
+namespace BConway\TrackerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Goal
+ *
+ * @ORM\Table(name="goals")
+ * @ORM\Entity(repositoryClass="BConway\TrackerBundle\Entity\GoalRepository")
+ */
+class Goal
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BConway\UserBundle\Entity\User", inversedBy="entries")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="datetime")
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime")
+     */
+    private $endDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="start_weight", type="integer")
+     */
+    private $startWeight;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="end_weight", type="integer")
+     */
+    private $endWeight;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     * @return Goal
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime 
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     * @return Goal
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime 
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+
+    /**
+     * Set startWeight
+     *
+     * @param integer $startWeight
+     * @return Goal
+     */
+    public function setStartWeight($startWeight)
+    {
+        $this->startWeight = $startWeight;
+    
+        return $this;
+    }
+
+    /**
+     * Get startWeight
+     *
+     * @return integer 
+     */
+    public function getStartWeight()
+    {
+        return $this->startWeight;
+    }
+
+    /**
+     * Set endWeight
+     *
+     * @param integer $endWeight
+     * @return Goal
+     */
+    public function setEndWeight($endWeight)
+    {
+        $this->endWeight = $endWeight;
+    
+        return $this;
+    }
+
+    /**
+     * Get endWeight
+     *
+     * @return integer 
+     */
+    public function getEndWeight()
+    {
+        return $this->endWeight;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Goal
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Goal
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+}

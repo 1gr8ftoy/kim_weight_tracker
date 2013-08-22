@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {# <div id="content"> is in parent #}
+    <div style="font-family: Lobster; padding: 5px; width: 100%; border-bottom: 1px solid #D1D1D1; text-align: center; color: #D1D1D1; font-size: 1.7em; margin-bottom: 15px;">
+        Weigh In
+    </div>
+
+    <form action="{{ path('b_conway_tracker_entry_create') }}" {{ form_enctype(form) }} method="POST" class="new_entry" id="new_entry">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="field">
+            {{ form_label(form.entry_date) }}
+            {{ form_widget(form.entry_date, {'attr': {'class': 'date_picker', 'size': '30'} }) }}
+        </div>
+        <div class="field">
+            {{ form_label(form.weight) }}
+            {{ form_widget(form.weight, {'attr': {'max': '1000', 'min': '0', 'step': '0.1', 'size': '30'} }) }}
+        </div>
+        <div class="field">
+            {{ form_label(form.deficit) }}
+            {{ form_widget(form.deficit) }}
+        </div>
+        <div class="actions">
+            {{ form_row(form.createEntry) }}
+        </div>
+    </form>
+{% endblock footer %}

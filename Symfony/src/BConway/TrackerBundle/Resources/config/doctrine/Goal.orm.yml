@@ -1,0 +1,38 @@
+BConway\TrackerBundle\Entity\Goal:
+    type:  entity
+    table: goals
+    repositoryClass: BConway\TrackerBundle\Entity\GoalRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        startDate:
+            column: start_date
+            type: datetime
+        endDate:
+            column: end_date
+            type: datetime
+        startWeight:
+            column: start_weight
+            type: integer
+        endWeight:
+            column: end_weight
+            type: integer
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: \BConway\UserBundle\Entity\User
+            inversedBy: goals
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt, setUpdatedAt ]
+        preUpdate: [ setUpdatedAt ]

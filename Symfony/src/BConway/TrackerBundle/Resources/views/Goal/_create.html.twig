@@ -1,0 +1,32 @@
+{{ form_start(form, {'attr': {'class': 'edit_goal'} }) }}
+<div class="errors">
+    {{ form_errors(form) }}
+</div>
+<div class="field">
+    <div class="label">
+        {{ form_label(form.startDate) }}
+    </div>
+    {{ form_widget(form.startDate, {'attr': {'class': 'date_picker input'} }) }}
+</div>
+<div class="field">
+    <div class="label">
+        {{ form_label(form.endDate) }}
+    </div>
+    {{ form_widget(form.endDate, {'attr': {'class': 'date_picker input'} }) }}
+</div>
+<div class="field">
+    <div class="label">
+        {{ form_label(form.startWeight) }}
+    </div>
+    {{ form_widget(form.startWeight, {'attr': {'class': 'input'} }) }}
+</div>
+<div class="field">
+    <div class="label">
+        {{ form_label(form.endWeight) }}
+    </div>
+    {{ form_widget(form.endWeight, {'attr': {'class': 'input'} }) }}
+</div>
+<div class="actions">
+    {{ form_widget(form.saveGoal) }}
+</div>
+{{ form_end(form) }}

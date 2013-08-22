@@ -1,0 +1,23 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Edit Profile</h2>
+
+<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+    {{ form_start(form) }}
+
+    <div>
+        {{ form_label(form.plainPassword.first) }}<br />
+        {{ form_widget(form.plainPassword.first, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.plainPassword.first) }}
+    </div>
+    <div style="margin-top: 20px;">
+        {{ form_label(form.plainPassword.second) }}<br />
+        {{ form_widget(form.plainPassword.second, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.plainPassword.second) }}
+    </div>
+    <div style="margin-top: 10px;">
+        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+    </div>
+
+    {{ form_end(form) }}
+</form>

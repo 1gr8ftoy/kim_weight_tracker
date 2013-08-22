@@ -1,0 +1,45 @@
+BConway\UserBundle\Entity\User:
+    type:  entity
+    table: users
+    repositoryClass: BConway\UserBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        signInCount:
+            column: sign_in_count
+            type: integer
+            nullable: TRUE
+        currentSignInAt:
+            column: current_sign_in_at
+            type: datetime
+            nullable: TRUE
+        lastSignInAt:
+            column: last_sign_in_at
+            type: datetime
+            nullable: TRUE
+        createdAt:
+            column: created_at
+            type: datetime
+            nullable: TRUE
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: TRUE
+        height:
+            type: integer
+            nullable: TRUE
+            groups: [Profile]
+    oneToMany:
+        entries:
+            targetEntity: \BConway\TrackerBundle\Entity\Entry
+            mappedBy: user
+            orderBy:
+                entryDate: DESC
+        goals:
+            targetEntity: \BConway\TrackerBundle\Entity\Goal
+            mappedBy: user
+            orderBy:
+                endDate: ASC

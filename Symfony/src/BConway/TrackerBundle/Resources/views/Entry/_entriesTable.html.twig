@@ -1,0 +1,22 @@
+<table class="entries_table">
+    <tr>
+        <th>Date</th>
+        <th>Weight</th>
+        <th>Deficit</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for entry in entries %}
+        <tr>
+            <td>{{ entry.entryDate|date("m/d/Y") }}</td>
+            {% if entry.weight %}
+                <td>{{ entry.weight }}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>{{ entry.deficit }}</td>
+            <td><a href="{{ path('b_conway_tracker_entry_edit', {'id': entry.id}) }}">Edit</a></td>
+            <td><a href="{{ path('b_conway_tracker_entry_delete', {'id': entry.id}) }}" onClick="return confirm('Are you sure?');">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>

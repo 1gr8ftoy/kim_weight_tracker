@@ -1,0 +1,200 @@
+<div id="single-goal-header" style="margin-bottom: 15px; cursor: pointer; width: 100%;
+                    border: 1px solid rgb(102, 51, 255); border-top-left-radius: 15px; border-top-right-radius: 15px;
+                    border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; font-size: 1.4em;
+                    text-align: center; color: rgb(102, 51, 255); height: 25px;" onclick="showGoalList();">
+    Click Here to Select Goal
+</div>
+<div id="single-goal-stats" style="width: 100%; padding: 0px 15px 0px 15px;">
+    <table>
+        <tbody><tr>
+            <td style="width: 135px;">
+                Goal start date:
+            </td>
+            <td style="width: 150px;">
+            <span id="single-goal_start-date">
+                {% if stats.startDate is defined %}
+                    {{ stats.startDate }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 135px;">
+                Goal end date:
+            </td>
+            <td style="width: 150px;">
+            <span id="single-goal_end-date">
+                {% if stats.endDate is defined %}
+                    {{ stats.endDate }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 135px;">
+                Days left/total:
+            </td>
+            <td style="width: 150px;">
+            <span id="single-goal_days-remaining">
+                {% if stats.goalLength is defined and stats.goalDaysRemaining %}
+                    {{ stats.goalDaysRemaining }} / {{ stats.goalLength }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Related weigh-ins:
+            </td>
+            <td>
+            <span id="single-goal_relative-weighins">
+                {% if stats.relativeWeighinsCount is defined %}
+                    {{ stats.relativeWeighinsCount }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Progress:
+            </td>
+            <td>
+                <div id="single-goal_progress-bar_container">
+                    <div id="single-goal_progress-bar_border">
+                        {% if stats.deficitProgress is defined %}
+                            <div id="single-goal_progress-bar_bar" style="width: {{ stats.deficitProgress }}px"></div>
+                        {% else %}
+                            <div id="single-goal_progress-bar_bar"></div>
+                        {% endif %}
+                    </div>
+                    {% if stats.deficitProgress is defined %}
+                        <div id="single-goal_progress-text">{{ stats.deficitProgress }}%</div>
+                    {% else %}
+                        <div id="single-goal_progress-text">0%</div>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Start weight:
+            </td>
+            <td>
+            <span id="single-goal_start-weight">
+                {% if stats.startWeight is defined %}
+                    {{ stats.startWeight }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Goal weight:
+            </td>
+            <td>
+            <span id="single-goal_end-weight">
+                {% if stats.goalWeight is defined %}
+                    {{ stats.goalWeight }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Most recent weigh-in weight:
+            </td>
+            <td>
+            <span id="single-goal_recent-weighin_weight">
+                {% if stats.lastWeighInWeight is defined %}
+                    {{ stats.lastWeighInWeight }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Estimated current weight:
+            </td>
+            <td>
+            <span id="single-goal_calculated-current-weight">
+                {% if stats.estimatedCurrentWeight is defined %}
+                    {{ stats.estimatedCurrentWeight }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Calorie deficit to date:
+            </td>
+            <td>
+            <span id="single-goal_current-calorie-deficit">
+                {% if stats.currentCalorieDeficit is defined %}
+                    {{ stats.currentCalorieDeficit }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Deficit since last weigh-in:
+            </td>
+            <td>
+            <span id="single-goal_most-recent-weighin-calorie-deficit">
+                {% if stats.deficitSinceLastWeighin is defined %}
+                    {{ stats.deficitSinceLastWeighin }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total deficit remaining:
+            </td>
+            <td>
+            <span id="single-goal_total-deficit-remaining">
+                {% if stats.totalCaloriesToLoseRemaining is defined %}
+                    {{ stats.totalCaloriesToLoseRemaining }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Current avg deficit:
+            </td>
+            <td>
+            <span id="single-goal_average-deficit">
+                {% if stats.currentAverageDeficit is defined %}
+                    {{ stats.currentAverageDeficit }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Future avg deficit needed:
+            </td>
+            <td>
+            <span id="single-goal_average-deficit-needed">
+                {% if stats.currentAverageDeficitNeeded is defined %}
+                    {{ stats.currentAverageDeficitNeeded }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Overall avg deficit needed:
+            </td>
+            <td>
+            <span id="single-goal_total-average-deficit-needed">
+                {% if stats.totalAverageDeficitNeeded is defined %}
+                    {{ stats.totalAverageDeficitNeeded }}
+                {% endif %}
+            </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

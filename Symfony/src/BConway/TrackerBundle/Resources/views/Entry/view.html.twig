@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div style="font-family: Lobster; padding: 5px; width: 100%; text-align: center; color: #D1D1D1; font-size: 1.7em;">
+    Weight &amp; Deficit Entries
+</div>
+<hr />
+<form accept-charset="UTF-8" id="entries_filter" action="{{ path('b_conway_tracker_entry_view') }}" class="center" data-remote="true" method="get">
+    <div class="center">
+        <input id="entries_with_weights_only" name="entries_with_weights_only" value="1" type="checkbox"> <label for="entries_with_weights_only">Show all records (even records without a weight)</label>
+    </div>
+    <hr />
+    <label for="start_date">Start date</label>
+    <input class="date_picker" id="start_date" name="start_date" type="text" />
+    <label for="end_date" style="margin-left: 4em;">End date</label>
+    <input class="date_picker" id="end_date" name="end_date" type="text" />
+    <input name="commit" value="Search" type="submit" />
+    <button name="button" onClick="clearEntrySearchForm();">Clear search</button>
+</form>
+<hr />
+<div id="loading" style="width: 100%; height: 100px; display: none;background: url({{ asset('images/ajax-loader.gif') }}) no-repeat center center; "></div>
+<div id="entries_tables" style="position: relative;">
+    {% include 'BConwayTrackerBundle:Entry:_entriesTable.html.twig' with {"entries": entries} %}
+</div>
+{% endblock body %}

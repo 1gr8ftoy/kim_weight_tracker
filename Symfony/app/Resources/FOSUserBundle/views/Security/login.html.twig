@@ -1,0 +1,39 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body_styles %}width: 250px !important; margin: 0 auto;{% endblock %}
+
+{% block fos_user_content %}
+    <h2>Login</h2>
+    {% if error %}
+        <div style="margin-top: 20px; margin-bottom: 20px;">{{ error|trans }}</div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <div>
+            <label for="username">{{ 'Username'|trans }}</label><br>
+            <input id="username" name="_username" size="30" type="text" value="{{ last_username }}" />
+        </div>
+
+        <div style="margin-top: 20px;">
+            <label for="password">{{ 'Password'|trans }}</label><br>
+            <input id="password" name="_password" size="30" type="password" />
+        </div>
+
+        <div style="margin-top: 10px;">
+            <input type="checkbox" id="remember_me" name="_remember_me" value="off" />
+            <label for="remember_me">{{ 'Remember me'|trans }}</label>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <input name="_submit" value="{{ 'Sign in'|trans }}" type="submit" id="_submit" />
+        </div>
+    </form>
+    <br />
+    <a href="{{ path('fos_user_registration_register') }}">Sign up</a>
+    <br />
+    <a href="{{ path('fos_user_resetting_request') }}">Forgot your password?</a>
+{% endblock fos_user_content %}

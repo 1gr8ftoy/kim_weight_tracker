@@ -1,0 +1,7 @@
+parameters:
+#    b_conway_tracker.example.class: BConway\TrackerBundle\Example
+
+services:
+#    b_conway_tracker.example:
+#        class: %b_conway_tracker.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,35 @@
+form.new_entry, form.edit_entry {
+  position: relative;
+}
+
+form.new_entry div.field, form.new_entry div.actions, form.edit_entry div.field, form.edit_entry div.actions {
+  float: left;
+  width: 25%;
+  text-align: center;
+  position: relative;
+}
+
+form.new_entry div.field input, form.edit_entry div.field input {
+  width: 50%;
+  position: relative;
+}
+
+.entries_table {
+  width: 100%;
+}
+
+.entries_table td, .entries_table th {
+  text-align: center;
+}
+
+.entries_table td:nth-child(1) {
+  min-width: 25%;
+}
+
+.entries_table td:nth-child(2) {
+  width: 25%;
+}
+
+.entries_table td:nth-child(3) {
+  width: 25%;
+}

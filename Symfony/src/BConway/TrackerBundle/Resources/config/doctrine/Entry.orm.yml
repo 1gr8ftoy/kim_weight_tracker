@@ -1,0 +1,31 @@
+BConway\TrackerBundle\Entity\Entry:
+    type:  entity
+    table: entries
+    repositoryClass: BConway\TrackerBundle\Entity\EntryRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        weight:
+            type: integer
+            nullable: TRUE
+        deficit:
+            type: integer
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+        entryDate:
+            column: entry_date
+            type: date
+    manyToOne:
+        user:
+            targetEntity: \BConway\UserBundle\Entity\User
+            inversedBy: entries
+            joinColumn:
+                name: user_id
+                referencedColumnName: id

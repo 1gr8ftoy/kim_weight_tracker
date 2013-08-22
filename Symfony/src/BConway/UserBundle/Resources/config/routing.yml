@@ -1,0 +1,4 @@
+b_conway_ajax_goal_list:
+    pattern:  /ajax/goals/view
+    defaults: { _controller: BConwayUserBundle:Default:ajaxGoalList }
+

@@ -1,0 +1,183 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {# <div id="content"> is in parent #}
+        <div style="font-family: Lobster; padding: 5px; width: 100%; border-bottom: 1px solid #D1D1D1; text-align: center; color: #D1D1D1; font-size: 1.7em; margin-bottom: 15px;">
+            Weigh In
+        </div>
+
+        <form action="{{ path('b_conway_tracker_entry_create') }}" {{ form_enctype(form) }} method="POST" class="new_entry" id="new_entry">
+            {{ form_start(form) }}
+            <div class="errors">
+                {{ form_errors(form) }}
+            </div>
+            <div class="field">
+                {{ form_label(form.entry_date) }}
+                {{ form_widget(form.entry_date, {'attr': {'class': 'date_picker', 'size': '30'} }) }}
+            </div>
+            <div class="field">
+                {{ form_label(form.weight) }}
+                {{ form_widget(form.weight, {'required': false, 'attr': {'max': '1000', 'min': '0', 'step': '0.1', 'size': '30'} }) }}
+            </div>
+            <div class="field">
+                {{ form_label(form.deficit) }}
+                {{ form_widget(form.deficit) }}
+            </div>
+            <div class="actions">
+                {{ form_row(form.createEntry) }}
+            </div>
+            {{ form_end(form) }}
+        </form>
+    </div>
+    <div id="content-stats" style="clear: both;">
+        <div style="font-family: Lobster; padding: 5px; width: 100%; border-bottom: 1px solid #D6D6D6; text-align: center; color: #E5E5E5; font-size: 1.7em; margin-bottom: 15px;">
+            Stats
+        </div>
+
+
+        <div id="loading" style="width: 40%; float: left; height: 100px; display: none; background: url({{ asset('images/ajax-loader.gif') }}) no-repeat center center; "></div>
+        <div id="single-goal-stats-div" style="width: 40%; float: left;">
+            {% include 'BConwayTrackerBundle:Goal:_stats.html.twig' with {'stats': {} } %}
+        </div>
+        <div style="width: 40%; float: right; right: 0px;">        <div style="margin-bottom: 15px; width: 100%; border: 1px solid #6633FF; border-radius: 15px;
+                    font-size: 1.4em; text-align: center; color: #6633FF;">
+                Total
+            </div>
+            <div id="total-goal-stats" style="width: 100%; padding: 0px 15px 0px 15px;">
+                <table>
+                    <tbody><tr>
+                        <td style="width: 200px;">
+                            First weigh-in date:
+                        </td>
+                        <td style="width: 100px;">
+                            <span id="all-goals_first-weighin_date">
+                                {% if userStats.firstWeighinDate %}
+                                {{ userStats.firstWeighinDate}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            First weigh-in weight:
+                        </td>
+                        <td>
+                            <span id="all-goals_first-weighin_weight">
+                                {% if userStats.firstWeighinWeight %}
+                                {{ userStats.firstWeighinWeight}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Most recent weigh-in date:
+                        </td>
+                        <td>
+                            <span id="all-goals_recent-weighin_date">
+                                {% if userStats.mostRecentWeighinDate %}
+                                {{ userStats.mostRecentWeighinDate}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Most recent weigh-in weight:
+                        </td>
+                        <td>
+                            <span id="all-goals_recent-weighin_weight">
+                                {% if userStats.mostRecentWeighinWeight %}
+                                {{ userStats.mostRecentWeighinWeight}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of weigh-ins:
+                        </td>
+                        <td>
+                            <span id="all-goals_number-of-weighins">
+                                {% if userStats.numberOfWeighins %}
+                                {{ userStats.numberOfWeighins}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of deficit entries:
+                        </td>
+                        <td>
+                            <span id="all-goals_number-of-deficit-entries">
+                                {% if userStats.numberOfDeficitEntries %}
+                                {{ userStats.numberOfDeficitEntries}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Average deficit:
+                        </td>
+                        <td>
+                            <span id="all-goals_average-deficit">
+                                {% if userStats.averageDeficit %}
+                                {{ userStats.averageDeficit}}
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Estimated BMI:
+                        </td>
+                        <td>
+                            <span id="all-goals_bmi">
+                                {% if userStats.bmi %}
+                                {{ userStats.bmi}}
+                                {% endif %}
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;<span title="BMI Categories:
+    Underweight: < 18.5
+    Normal weight: 18.5 - 24.9
+    Overweight: 25 - 29.9
+    Obesity: BMI of 30 or greater" id="bmi-hint" style="cursor: pointer;">[?]</span>
+                        </td>
+                    </tr>
+                    </tbody></table>
+            </div>
+        </div>
+    {# </div> is in parent #}
+{% endblock body %}
+{% block footer %}
+    {{  parent() }}
+    <script type="text/javascript">
+        // Generate and show goal list on weigh-in/stats page
+        function showGoalList() {
+            if ($("#single-goal-header").html().indexOf("<hr />") == -1) {
+            var html = "";
+
+                $("#single-goal-header").css('cursor', 'default');
+                $("#single-goal-header").removeAttr("onClick");
+                $("#single-goal-header").animate(
+                    {
+                        height: 145
+                    },
+                    1000,
+                    function () {
+                        html = 'Please Select a Goal<hr style="margin-top: -1px;"/>';
+                        html += '<ul id="goals_list" style="font-size: 0.7em; margin: 0 1em; max-height: 90px; height: 90px;">';
+                        {% for goal in goals %}
+                            html += '<li><a href="javascript:showGoalStats(\'{{ goal.id }}\');">{{goal.endDate|date("m/d/Y")}} - {{goal.endWeight}}lbs</a></li>';
+                        {% endfor %}
+                        html += '</ul>';
+                        $("#single-goal-header").html(html);
+
+                        $("#goals_list").menu();
+                    }
+                );
+            }
+        }
+    </script>
+{% endblock footer %}

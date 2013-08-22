@@ -1,0 +1,42 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div style="margin-top: 10px;">
+    <a href="{{ path('b_conway_tracker_entry_create') }}">&laquo; Back</a>
+</div>
+<h2>Edit Profile</h2>
+<h3>Login details</h3>
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.username) }}<br />
+        {{ form_widget(form.username, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.username) }}
+    </div>
+    <div style="margin-top: 20px;">
+        {{ form_label(form.email) }}<br />
+        {{ form_widget(form.email, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div style="margin-top: 20px;">
+        {{ form_label(form.current_password) }}<br /><span style="font-size: 0.8em;"><i>(needed to confirm changes)</i></span><br />
+        {{ form_widget(form.current_password, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.current_password) }}
+    </div>
+    <div style="margin-top: 10px;">
+        <a href="{{ path('fos_user_change_password') }}">Change password</a>
+    </div>
+
+    <h3 style="margin-top: 35px;">Additional details</h3>
+
+    <div style="margin-top: 20px;">
+        <label for="fos_user_profile_form_height">Your height in inches<br /><span style="font-size: 0.8em;"><i>(this is used to calculate your bmi)</i></span></label><br />
+        {{ form_widget(form.height, {'attr': {'size': '30'} }) }}
+        {{ form_errors(form.height) }}
+    </div>
+    <div style="margin-top: 10px;">
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+</form>
+

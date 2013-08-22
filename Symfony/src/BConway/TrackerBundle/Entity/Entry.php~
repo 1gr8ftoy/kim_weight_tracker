@@ -1,0 +1,190 @@
+<?php
+
+namespace BConway\TrackerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Entry
+ *
+ * @ORM\Table(name="entries")
+ * @ORM\Entity
+ */
+class Entry
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BConway\UserBundle\Entity\User", inversedBy="entries")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="weight", type="integer")
+     */
+    private $weight;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="deficit", type="integer")
+     */
+    private $deficit;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="entry_date", type="date")
+     */
+    private $entryDate;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set weight
+     *
+     * @param integer $weight
+     * @return Entry
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer 
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set deficit
+     *
+     * @param integer $deficit
+     * @return Entry
+     */
+    public function setDeficit($deficit)
+    {
+        $this->deficit = $deficit;
+    
+        return $this;
+    }
+
+    /**
+     * Get deficit
+     *
+     * @return integer 
+     */
+    public function getDeficit()
+    {
+        return $this->deficit;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Entry
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Entry
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set entryDate
+     *
+     * @param \DateTime $entryDate
+     * @return Entry
+     */
+    public function setEntryDate($entryDate)
+    {
+        $this->entryDate = $entryDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get entryDate
+     *
+     * @return \DateTime 
+     */
+    public function getEntryDate()
+    {
+        return $this->entryDate;
+    }
+}
