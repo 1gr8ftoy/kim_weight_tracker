@@ -79,8 +79,8 @@ fos_user:
         form:
             type: bconway_user_profile
     from_email:
-        address:        %mailer_fromaddress%
-        sender_name:    %mailer_sendername$
+        address:        %fos_user_mailer_fromaddress%
+        sender_name:    %fos_user_mailer_sendername%
 
 jms_security_extra:
     # Whether you want to secure all services (true), or only secure specific
