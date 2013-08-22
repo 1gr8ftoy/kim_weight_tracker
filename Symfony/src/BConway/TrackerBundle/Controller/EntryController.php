@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EntryController extends Controller
 {
-    public function createAction()
+    public function createAction(Request $request)
     {
         $em = $this
             ->getDoctrine()
@@ -25,7 +25,7 @@ class EntryController extends Controller
         $goals = array();
 
         $form = $this->createForm(new EntryType(), $entry);
-        $form->handleRequest($entry);
+        $form->handleRequest($request);
 
 
         if ($form->isValid()) {
