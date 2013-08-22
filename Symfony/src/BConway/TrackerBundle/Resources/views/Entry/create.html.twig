@@ -169,7 +169,7 @@
                         html = 'Please Select a Goal<hr style="margin-top: -1px;"/>';
                         html += '<ul id="goals_list" style="font-size: 0.7em; margin: 0 1em; max-height: 90px; height: 90px;">';
                         {% for goal in goals %}
-                            html += '<li><a href="javascript:showGoalStats(\'{{ goal.id }}\');">{{goal.endDate|date("m/d/Y")}} - {{goal.endWeight}}lbs</a></li>';
+                            html += '<li><a href="#" onclick="javascript:showGoalStats(\'{{ goal.id }}\'); return false;">{{goal.endDate|date("m/d/Y")}} - {{goal.endWeight}}lbs</a></li>';
                         {% endfor %}
                         html += '</ul>';
                         $("#single-goal-header").html(html);
