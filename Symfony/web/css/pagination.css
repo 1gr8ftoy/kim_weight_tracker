@@ -1,0 +1,21 @@
+div#pagination {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px; }
+  div#pagination table {
+    border-top: 1px solid #666666;
+    width: 80%;
+    margin: 0 auto; }
+    div#pagination table td {
+      text-align: center;
+      padding-top: 10px; }
+    div#pagination table td:nth-child(1) {
+      width: 15%; }
+    div#pagination table td:nth-child(2) {
+      width: 15%; }
+    div#pagination table td:nth-child(3) {
+      width: 40%; }
+    div#pagination table td:nth-child(4) {
+      width: 15%; }
+    div#pagination table td:nth-child(5) {
+      width: 15%; }

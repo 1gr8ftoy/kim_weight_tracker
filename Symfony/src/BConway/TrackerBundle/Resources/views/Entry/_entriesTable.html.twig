@@ -20,3 +20,36 @@
         </tr>
     {% endfor %}
 </table>
+<div id="pagination">
+    <table>
+        <tr>
+            <td>
+                {% if currentPage > 1 %}
+                    <button onclick="showEntries('1'); return false;"><< First</button>
+                    {#<a href="#" style="" onclick="showEntries('1'); return false;"><< First</a>#}
+                {% endif %}
+            </td>
+            <td>
+                {% if currentPage > 1 %}
+                    <button onclick="showEntries({{ currentPage - 1 }}); return false;">< Prev</button>
+                    {#<a href="#" style="" onclick="showEntries({{ currentPage - 1 }}); return false;">< Prev</a>#}
+                {% endif %}
+            </td>
+            <td>
+                Currently displaying page <span class="currentpage">{{ currentPage }}</span> of <span class="totalpages">{{ totalPages }}</span>
+            </td>
+            <td>
+                {% if currentPage < totalPages %}
+                    <button onclick="showEntries({{ currentPage + 1 }}); return false;">Next ></button>
+                    {#<a href="#" style="" onclick="showEntries({{ currentPage + 1 }}); return false;">Next ></a>#}
+                {% endif %}
+            </td>
+            <td>
+                {% if currentPage < totalPages %}
+                    <button onclick="showEntries({{ totalPages }}); return false;">Last >></button>
+                    {#<a href="#" style="" onclick="showEntries({{ totalPages }}); return false;">Last >></a>#}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>

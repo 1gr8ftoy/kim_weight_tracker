@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class EntryRepository extends EntityRepository
 {
-    public function findEntries($user_id, $all = null, $start_date = null, $end_date = null)
+    public function findEntries($user_id, $all = null, $start_date = null, $end_date = null, $page = 1, $items_per_page = 10)
     {
         $builder = $this
             ->getEntityManager()
@@ -22,8 +22,10 @@ class EntryRepository extends EntityRepository
             ->select('e')
             ->from('BConwayTrackerBundle:Entry', 'e')
             ->where('e.user = :user_id')
-            ->orderBy('e.entryDate', 'DESC')
-            ->setParameter('user_id', $user_id);
+            ->setParameter('user_id', $user_id)
+            ->setMaxResults($items_per_page)
+            ->setFirstResult(($page - 1) * $items_per_page)
+            ->orderBy('e.entryDate', 'DESC');
 
         if (!$all) {
             $builder->andWhere('e.weight IS NOT NULL');
@@ -51,6 +53,50 @@ class EntryRepository extends EntityRepository
 
         try {
             return $query->getArrayResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
+    public function getEntriesCount($user_id, $all = null, $start_date = null, $end_date = null)
+    {
+        $builder = $this
+            ->getEntityManager()
+            ->createQueryBuilder();
+
+        $builder
+            ->select('e')
+            ->from('BConwayTrackerBundle:Entry', 'e')
+            ->where('e.user = :user_id')
+            ->setParameter('user_id', $user_id)
+            ->orderBy('e.entryDate', 'DESC');
+
+        if (!$all) {
+            $builder->andWhere('e.weight IS NOT NULL');
+            $builder->andWhere('e.weight != 0');
+        }
+
+        if ($start_date && $end_date) {
+            // Create \DateTime objects from given dates
+            $start_date = \DateTime::createFromFormat("Y-m-d", $start_date);
+            $end_date = \DateTime::createFromFormat("Y-m-d", $end_date);
+
+            // Subtract one day from $start_date,
+            // this fixes the "BETWEEN" query
+            $start_date->sub(new \DateInterval('P1D'));
+
+            if (is_a($start_date, 'DateTime') && is_a($end_date, 'DateTime')) {
+                $builder
+                    ->andWhere('e.entryDate BETWEEN :start_date AND :end_date')
+                    ->setParameter('start_date', $start_date)
+                    ->setParameter('end_date', $end_date);
+            }
+        }
+
+        $query = $builder->getQuery();
+
+        try {
+            return count($query->getArrayResult());
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }
