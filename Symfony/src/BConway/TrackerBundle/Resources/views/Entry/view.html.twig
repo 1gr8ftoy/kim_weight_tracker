@@ -20,6 +20,6 @@
 <hr />
 <div id="loading" style="width: 100%; height: 100px; display: none;background: url({{ asset('images/ajax-loader.gif') }}) no-repeat center center; "></div>
 <div id="entries_tables" style="position: relative;">
-    {% include 'BConwayTrackerBundle:Entry:_entriesTable.html.twig' with {"entries": entries} %}
+    {% include 'BConwayTrackerBundle:Entry:_entriesTable.html.twig' with {"entries": entries, "currentPage": currentPage, "totalPages": totalPages} %}
 </div>
 {% endblock body %}

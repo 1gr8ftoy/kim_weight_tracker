@@ -64,6 +64,27 @@ class EntryController extends Controller
 
     public function viewAction()
     {
+
+        // Setup pagination
+
+        // Get page from query variable, if it exists
+        $page = $this->getRequest()->query->get('page');
+
+        // Set default current page
+        if (is_null($page) || !is_numeric($page)) {
+            $page = 1;
+        }
+
+        // Get items per page from query variable, if it exists
+        $items_per_page = $this->getRequest()->query->get('perpage');
+
+        // Set default current page
+        if (is_null($items_per_page) || !is_numeric($items_per_page)) {
+            $items_per_page = 10;
+        }
+
+        // end - Setup pagination
+
         $start_date = $this->getRequest()->query->get('start_date');
         $end_date = $this->getRequest()->query->get('end_date');
         $all = $this->getRequest()->query->get('all');
@@ -71,11 +92,21 @@ class EntryController extends Controller
 
         $em = $this
             ->getDoctrine()
-            ->getManager();
+            ->getManager()
+            ->getRepository('BConwayTrackerBundle:Entry');
 
         $entries = $em
-            ->getRepository('BConwayTrackerBundle:Entry')
             ->findEntries(
+                $this->getUser()->getId(),
+                $all,
+                $start_date,
+                $end_date,
+                $page,
+                $items_per_page
+            );
+
+        $entries_count = $em
+            ->getEntriesCount(
                 $this->getUser()->getId(),
                 $all,
                 $start_date,
@@ -84,11 +115,15 @@ class EntryController extends Controller
 
         if ($this->getRequest()->isXmlHttpRequest()) {
             return $this->render('BConwayTrackerBundle:Entry:_entriesTable.html.twig', array(
-                'entries' => $entries,
+                'entries'       => $entries,
+                'currentPage'     => $page,
+                'totalPages'    => ceil($entries_count / $items_per_page),
             ));
         } else {
             return $this->render('BConwayTrackerBundle:Entry:view.html.twig', array(
-                'entries' => $entries,
+                'entries'       => $entries,
+                'currentPage'     => $page,
+                'totalPages'    => ceil($entries_count / $items_per_page),
             ));
         }
     }

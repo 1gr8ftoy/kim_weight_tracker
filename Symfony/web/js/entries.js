@@ -13,32 +13,41 @@ $(document).ready(function() {
     });
 
     $("form#entries_filter").submit(function (event) {
-        $('div#entries_tables').fadeOut(function(){
-            $('div#loading').fadeIn();
-        });
+        var page = (page != null) ? page : 1;
 
-        $.get(Routing.generate('b_conway_tracker_entry_view'), {
-                start_date: $("form#entries_filter input#start_date").val(),
-                end_date: $("form#entries_filter input#end_date").val(),
-                all: $("form#entries_filter input#entries_with_weights_only").is(':checked')
-            },
-            function(html) {
-                $('div#entries_tables').html(html);
-            }
-        )
-            .fail(function() {
-                alert("Error loading entries");
-            })
-            .always(function() {
-                $('div#loading').fadeOut(function() {
-                    $('div#entries_tables').fadeIn();
-                });
-            });
+        showEntries(page);
 
         event.preventDefault();
         return false;
     });
 });
+
+function showEntries(page) {
+    page = (page != null) ? page : 1;
+
+    $('div#entries_tables').fadeOut(function(){
+        $('div#loading').fadeIn();
+    });
+
+    $.get(Routing.generate('b_conway_tracker_entry_view'), {
+            start_date: $("form#entries_filter input#start_date").val(),
+            end_date: $("form#entries_filter input#end_date").val(),
+            all: $("form#entries_filter input#entries_with_weights_only").is(':checked'),
+            page: page
+        },
+        function(html) {
+            $('div#entries_tables').html(html);
+        }
+    )
+        .fail(function() {
+            alert("Error loading entries");
+        })
+        .always(function() {
+            $('div#loading').fadeOut(function() {
+                $('div#entries_tables').fadeIn();
+            });
+        });
+}
 
 function clearEntrySearchForm() {
     $('form#entries_filter input[type="text"]').each(function () {
