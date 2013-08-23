@@ -1,22 +1,31 @@
 function showGoalStats(id) {
-    var url = Routing.generate('b_conway_tracker_goal_view_stats', {id: id});
-
     $('div#single-goal-stats-div').fadeOut(function(){
         $('div#loading').fadeIn();
     });
 
+    var url = Routing.generate('b_conway_tracker_goal_view_stats', {id: id});
+
     $.get(url, function(html) {
         try
         {
-            $('div#single-goal-stats-div').html(html);
+            if( html.indexOf( "login_form" ) > -1 ) {
+                window.location = window.location;
+            } else {
+                $('div#single-goal-stats-div').html(html);
+
+                $('div#loading').fadeOut(function() {
+                    $('div#single-goal-stats-div').fadeIn();
+                });
+            }
         }
         catch(e)
         {
             alert("Error loading goal stats");
         }
     })
-        .fail(function() { alert("Error loading goal stats"); })
-        .always(function() {
+        .fail(function() {
+            alert("Error loading goal stats");
+
             $('div#loading').fadeOut(function() {
                 $('div#single-goal-stats-div').fadeIn();
             });

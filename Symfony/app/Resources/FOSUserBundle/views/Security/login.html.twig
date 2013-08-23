@@ -10,7 +10,7 @@
         <div style="margin-top: 20px; margin-bottom: 20px;">{{ error|trans }}</div>
     {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
+    <form id="login_form" action="{{ path("fos_user_security_check") }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
         <div>
