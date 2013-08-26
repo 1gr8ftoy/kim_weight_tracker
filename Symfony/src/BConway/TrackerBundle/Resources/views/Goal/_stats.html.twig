@@ -36,7 +36,7 @@
             </td>
             <td style="width: 150px;">
             <span id="single-goal_days-remaining">
-                {% if stats.goalLength is defined and stats.goalDaysRemaining %}
+                {% if stats.goalLength is defined and stats.goalDaysRemaining is defined %}
                     {{ stats.goalDaysRemaining }} / {{ stats.goalLength }}
                 {% endif %}
             </span>
