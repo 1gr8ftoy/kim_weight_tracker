@@ -370,6 +370,8 @@ class Goal
                 (($this->startWeight - $this->endWeight) * 3500) - $stats['currentCalorieDeficit'];
         }
 
+        $stats['totalCaloriesToLoseRemaining'] = max($stats['totalCaloriesToLoseRemaining'], 0);
+
         try {
             if ($stats['goalLength']) {
                 $stats['totalAverageDeficitNeeded'] = round((($this->startWeight - $this->endWeight) * 3500) / $stats['goalLength'], 2);
@@ -417,6 +419,8 @@ class Goal
                 } else {
                     $stats['deficitProgress'] = 0;
                 }
+
+                $stats['deficitProgress'] = min($stats['deficitProgress'], 100);
             } else {
                 $stats['deficitProgress'] = 0;
             }
