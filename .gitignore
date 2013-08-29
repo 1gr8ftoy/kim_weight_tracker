@@ -9,6 +9,7 @@ Symfony/web/uploads/*
 Symfony/web/bundles/*
 Symfony/web/css/compiled/*
 Symfony/web/js/compiled/*
+Symfony/bin/*
 
 # Composer binary
 Symfony/composer.phar
