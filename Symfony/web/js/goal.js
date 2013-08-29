@@ -1,42 +1,40 @@
 function showGoalStats(id) {
-    $('div#single-goal-stats-div').fadeOut(function(){
-        $('div#loading').fadeIn();
-    });
+    $('div#single-goal-stats-div').fadeOut(function () {
+        $('div#loading').fadeIn(function () {
+            var url = Routing.generate('b_conway_tracker_goal_view_stats', {id: id});
 
-    var url = Routing.generate('b_conway_tracker_goal_view_stats', {id: id});
+            $.get(url, function (html) {
+                try {
+                    if (html.indexOf("login_form") > -1) {
+                        window.location = window.location;
+                    } else {
+                        $('div#single-goal-stats-div').html(html);
 
-    $.get(url, function(html) {
-        try
-        {
-            if( html.indexOf( "login_form" ) > -1 ) {
-                window.location = window.location;
-            } else {
-                $('div#single-goal-stats-div').html(html);
+                        $('div#loading').fadeOut(function () {
+                            $('div#single-goal-stats-div').fadeIn();
+                        });
+                    }
+                }
+                catch (e) {
+                    alert("Error loading goal stats");
+                }
+            })
+                .fail(function () {
+                    alert("Error loading goal stats");
 
-                $('div#loading').fadeOut(function() {
-                    $('div#single-goal-stats-div').fadeIn();
+                    $('div#loading').fadeOut(function () {
+                        $('div#single-goal-stats-div').fadeIn();
+                    });
                 });
-            }
-        }
-        catch(e)
-        {
-            alert("Error loading goal stats");
-        }
-    })
-        .fail(function() {
-            alert("Error loading goal stats");
-
-            $('div#loading').fadeOut(function() {
-                $('div#single-goal-stats-div').fadeIn();
-            });
         });
+    });
 }
 
 function displayGoalStats(stats) {
     if (stats && !(stats == null)) {
         var headerStyles = {
-            "cursor":   "pointer",
-            "height":   "25px"
+            "cursor": "pointer",
+            "height": "25px"
         };
 
         $('div#single-goal-header').text(
@@ -127,45 +125,47 @@ function displayGoalStats(stats) {
 function showGoalSettings(id) {
     var url = Routing.generate('b_conway_tracker_goal_edit', {id: id});
 
-    $('div#edit_goal').fadeOut(function() {
-        $('div#loading').fadeIn();
+    $('div#edit_goal').fadeOut(function () {
+        $('div#loading').fadeIn(function () {
+            $.get(url, function (html) {
+                try {
+                    $('div#edit_goal').html(html);
+                    $('div#loading').fadeOut(function () {
+                        $('div#edit_goal').fadeIn();
+                    });
+                    $("input.date_picker").datepicker({ dateFormat: "yy-mm-dd" });
+                }
+                catch (e) {
+                    alert("Error loading goal settings");
+                }
+            })
+                .fail(function () {
+                    alert("Error loading goal settings");
+                });
+        });
     });
-    $.get(url, function(html) {
-        try
-        {
-            $('div#edit_goal').html(html);
-            $('div#loading').fadeOut(function() {
-                $('div#edit_goal').fadeIn();
-            });
-            $("input.date_picker").datepicker({ dateFormat: "yy-mm-dd" });
-        }
-        catch(e)
-        {
-            alert("Error loading goal settings");
-        }
-    })
-        .fail(function() { alert("Error loading goal settings"); });
 }
 
 function createNewGoal() {
     var url = Routing.generate('b_conway_tracker_goal_create');
 
-    $('div#edit_goal').fadeOut(function() {
-        $('div#loading').fadeIn();
+    $('div#edit_goal').fadeOut(function () {
+        $('div#loading').fadeIn(function () {
+            $.get(url, function (html) {
+                try {
+                    $('div#edit_goal').html(html);
+                    $('div#loading').fadeOut(function () {
+                        $('div#edit_goal').fadeIn();
+                    });
+                    $("input.date_picker").datepicker({ dateFormat: "yy-mm-dd" });
+                }
+                catch (e) {
+                    alert("Error creating new goal");
+                }
+            })
+                .fail(function () {
+                    alert("Error creating new goal");
+                });
+        });
     });
-    $.get(url, function(html) {
-        try
-        {
-            $('div#edit_goal').html(html);
-            $('div#loading').fadeOut(function() {
-                $('div#edit_goal').fadeIn();
-            });
-            $("input.date_picker").datepicker({ dateFormat: "yy-mm-dd" });
-        }
-        catch(e)
-        {
-            alert("Error creating new goal");
-        }
-    })
-        .fail(function() { alert("Error creating new goal"); });
 }

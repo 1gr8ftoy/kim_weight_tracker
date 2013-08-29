@@ -26,45 +26,45 @@ function showEntries(page) {
     page = (page != null) ? page : 1;
 
     $('div#entries_tables').fadeOut(function(){
-        $('div#loading').fadeIn();
-    });
+        $('div#loading').fadeIn(function() {
+            var url = Routing.generate('b_conway_tracker_entry_view');
+            var data = {
+                start_date: $("form#entries_filter input#start_date").val(),
+                end_date: $("form#entries_filter input#end_date").val(),
+                all: $("form#entries_filter input#entries_with_weights_only").is(':checked'),
+                page: page
+            };
 
-    var url = Routing.generate('b_conway_tracker_entry_view');
-    var data = {
-        start_date: $("form#entries_filter input#start_date").val(),
-        end_date: $("form#entries_filter input#end_date").val(),
-        all: $("form#entries_filter input#entries_with_weights_only").is(':checked'),
-        page: page
-    };
+            $.get(url, data,
+                function(html) {
+                    try {
+                        if( html.indexOf( "login_form" ) > -1 ) {
+                            window.location = window.location;
+                        } else {
+                            $('div#entries_tables').html(html);
 
-    $.get(url, data,
-        function(html) {
-            try {
-                if( html.indexOf( "login_form" ) > -1 ) {
-                    window.location = window.location;
-                } else {
-                    $('div#entries_tables').html(html);
+                            $('div#loading').fadeOut(function() {
+                                $('div#entries_tables').fadeIn();
+                            });
+                        }
+                    } catch (e) {
+                        alert("Error loading entries");
+
+                        $('div#loading').fadeOut(function() {
+                            $('div#entries_tables').fadeIn();
+                        });
+                    }
+                }
+            )
+                .fail(function() {
+                    alert("Error loading entries");
 
                     $('div#loading').fadeOut(function() {
                         $('div#entries_tables').fadeIn();
                     });
-                }
-            } catch (e) {
-                alert("Error loading entries");
-
-                $('div#loading').fadeOut(function() {
-                    $('div#entries_tables').fadeIn();
                 });
-            }
-        }
-    )
-        .fail(function() {
-            alert("Error loading entries");
-
-            $('div#loading').fadeOut(function() {
-                $('div#entries_tables').fadeIn();
-            });
         });
+    });
 }
 
 function clearEntrySearchForm() {
