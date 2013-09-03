@@ -395,7 +395,7 @@ class Goal
 
         try {
             $stats['currentAverageDeficit'] =
-                round($stats['currentCalorieDeficit'] / (((time() - $this->startDate->getTimestamp())/60/60/24) + 1), 2);
+                round($stats['currentCalorieDeficit'] / ceil((time() - $this->startDate->getTimestamp())/60/60/24), 2);
         } catch (\Exception $e) {
             $stats['currentAverageDeficit'] = 0;
         }
