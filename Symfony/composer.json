@@ -27,7 +27,9 @@
         "elnur/blowfish-password-encoder-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "jms/security-extra-bundle": "dev-master",
-        "symfony/icu": "1.0.*",
+        "symfony/icu": "1.0.*"
+    },
+    "require-dev": {
         "behat/behat": "2.5.*@stable",
         "behat/symfony2-extension": "*",
         "behat/mink": "1.5@stable",
@@ -37,7 +39,8 @@
         "behat/mink-sahi-driver": "*",
         "behat/mink-zombie-driver": "*",
         "behat/mink-extension": "*",
-        "symfony/css-selector": "2.3.*"
+        "symfony/css-selector": "2.3.*",
+        "behat/mink-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
