@@ -607,15 +607,18 @@ class User extends BaseUser
     public function getStats() {
         $stats = array();
 
-        $stats['firstWeighinDate'] = $this->getFirstWeighinDate()->format("m/d/Y");
-        $stats['firstWeighinWeight'] = $this->getFirstWeighinWeight();
-        $stats['mostRecentWeighinDate'] = $this->getMostRecentWeighinDate()->format("m/d/Y");
-        $stats['mostRecentWeighinWeight'] = $this->getMostRecentWeighinWeight();
         $stats['numberOfWeighins'] = $this->getNumberOfWeighins();
         $stats['numberOfDeficitEntries'] = $this->getNumberOfDeficitEntries();
-        $stats['averageDeficit'] = $this->getAverageDeficit();
-        $stats['bmi'] = $this->getBMI();
-        $stats['estimatedCurrentWeight'] = $this->getEstimatedCurrentWeight();
+
+        if ($stats['numberOfWeighins']) {
+            $stats['firstWeighinDate'] = $this->getFirstWeighinDate()->format("m/d/Y");
+            $stats['firstWeighinWeight'] = $this->getFirstWeighinWeight();
+            $stats['mostRecentWeighinDate'] = $this->getMostRecentWeighinDate()->format("m/d/Y");
+            $stats['mostRecentWeighinWeight'] = $this->getMostRecentWeighinWeight();
+            $stats['averageDeficit'] = $this->getAverageDeficit();
+            $stats['bmi'] = $this->getBMI();
+            $stats['estimatedCurrentWeight'] = $this->getEstimatedCurrentWeight();
+        }
 
         return $stats;
     }
