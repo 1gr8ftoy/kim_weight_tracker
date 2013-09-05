@@ -7,7 +7,8 @@
 <hr />
 <form accept-charset="UTF-8" id="entries_filter" action="{{ path('b_conway_tracker_entry_view') }}" class="center" data-remote="true" method="get">
     <div class="center">
-        <input id="entries_with_weights_only" name="entries_with_weights_only" value="1" type="checkbox"> <label for="entries_with_weights_only">Show all records (even records without a weight)</label>
+        <input id="show_all_entries"
+               name="show_all_entries" value="1" type="checkbox"> <label for="show_all_entries">Show all records (even records without a weight)</label>
     </div>
     <hr />
     <label for="start_date">Start date</label>

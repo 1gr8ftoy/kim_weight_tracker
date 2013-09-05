@@ -8,7 +8,7 @@ var bmi_hint_html =  '' +
 $(document).ready(function() {
     jQuery("#bmi-hint").attr("title", bmi_hint_html);
 
-    jQuery("#entries_with_weights_only").change(function() {
+    jQuery("#show_all_entries").change(function() {
         jQuery(this).closest("form").submit();
     });
 
@@ -31,7 +31,7 @@ function showEntries(page) {
             var data = {
                 start_date: $("form#entries_filter input#start_date").val(),
                 end_date: $("form#entries_filter input#end_date").val(),
-                all: $("form#entries_filter input#entries_with_weights_only").is(':checked'),
+                all: $("form#entries_filter input#show_all_entries").is(':checked'),
                 page: page
             };
 
