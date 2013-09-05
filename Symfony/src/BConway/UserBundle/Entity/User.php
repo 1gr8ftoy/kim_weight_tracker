@@ -496,7 +496,7 @@ class User extends BaseUser
     private function getDeficitEntriesSinceLastWeighin() {
         $entries = new ArrayCollection();
         foreach ($this->getEntriesWithDeficit() as $entry) {
-            if ($entry->getId() > $this->getEntriesWithWeight()->first()->getId()) {
+            if ($entry->getEntryDate() > $this->getMostRecentWeighinDate()) {
                 $entries->add($entry);
             }
         }
@@ -567,7 +567,7 @@ class User extends BaseUser
      */
     public function getEstimatedCurrentWeight() {
         if (count($this->getEntriesWithWeight()) > 0 && $this->getMostRecentWeighinWeight()) {
-            $weight = $this->getEntriesWithWeight()->first()->getWeight();
+            $weight = $this->getMostRecentWeighinWeight();
             $deficit_since_last_weighin = $this->getDeficitSinceLastWeighin();
             $deficit_entries_since_last_weighin = $this->getDeficitEntriesSinceLastWeighin();
 
