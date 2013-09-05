@@ -9,7 +9,7 @@
     <div style="float: left; width: 40%;">
         <ul id="goals_list">
             {% for goal in goals %}
-                <li><a href="javascript:showGoalSettings({{ goal.id }});">{{ goal.endDate|date("m/d/Y") }} - {{ goal.endWeight }}lbs</a></li>
+                <li><a href="javascript:void(0)" onclick="showGoalSettings({{ goal.id }});">{{ goal.endDate|date("m/d/Y") }} - {{ goal.endWeight }}lbs</a></li>
             {% endfor %}
         </ul>
 
