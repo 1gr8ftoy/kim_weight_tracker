@@ -12,7 +12,13 @@ services:
             - { name: form.type, alias: bconway_user_profile}
 
     bconway_user.profile.password_resetting:
-            class: BConway\UserBundle\EventListener\PasswordResettingListener
-            arguments: [ @router ]
-            tags:
-                - { name: kernel.event_subscriber }
+        class: BConway\UserBundle\EventListener\PasswordResettingListener
+        arguments: [ @router ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    bconway_user.profile.password_changing:
+        class: BConway\UserBundle\EventListener\PasswordChangeListener
+        arguments: [ @router ]
+        tags:
+            - { name: kernel.event_subscriber }
