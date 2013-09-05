@@ -37,9 +37,11 @@ BConway\UserBundle\Entity\User:
             targetEntity: \BConway\TrackerBundle\Entity\Entry
             mappedBy: user
             orderBy:
-                entryDate: DESC
+                entryDate: ASC
+            cascade: [all]
         goals:
             targetEntity: \BConway\TrackerBundle\Entity\Goal
             mappedBy: user
             orderBy:
                 endDate: ASC
+            cascade: [all]

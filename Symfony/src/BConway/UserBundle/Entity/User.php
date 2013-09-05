@@ -448,7 +448,7 @@ class User extends BaseUser
 
     public function getFirstWeighinWeight() {
         if (count($this->getEntriesWithWeight()) > 0) {
-            $weight = $this->getEntriesWithWeight()->last()->getWeight();
+            $weight = $this->getEntriesWithWeight()->first()->getWeight();
 
             return $weight;
         } else {
@@ -458,7 +458,7 @@ class User extends BaseUser
 
     public function getMostRecentWeighinWeight() {
         if (count($this->getEntriesWithWeight()) > 0) {
-            $weight = $this->getEntriesWithWeight()->first()->getWeight();
+            $weight = $this->getEntriesWithWeight()->last()->getWeight();
 
             return $weight;
         } else {
@@ -468,7 +468,7 @@ class User extends BaseUser
 
     public function getFirstWeighinDate() {
         if (count($this->getEntriesWithWeight()) > 0) {
-            $date = $this->getEntriesWithWeight()->last()->getEntryDate();
+            $date = $this->getEntriesWithWeight()->first()->getEntryDate();
 
             return $date;
         } else {
@@ -478,7 +478,7 @@ class User extends BaseUser
 
     public function getMostRecentWeighinDate() {
         if (count($this->getEntriesWithWeight()) > 0) {
-            $date = $this->getEntriesWithWeight()->first()->getEntryDate();
+            $date = $this->getEntriesWithWeight()->last()->getEntryDate();
 
             return $date;
         } else {
