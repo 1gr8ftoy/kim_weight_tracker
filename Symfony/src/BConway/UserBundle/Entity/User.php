@@ -513,13 +513,11 @@ class User extends BaseUser
         if (count($deficit_entries_since_last_weighin) > 0) {
             $deficit = 0;
             foreach ($deficit_entries_since_last_weighin as $entry) {
-                if ($entry->getId() > $this->getEntriesWithWeight()->first()->getId()) {
-                    $deficit += $entry->getDeficit();
-                }
+                $deficit += $entry->getDeficit();
             }
             return $deficit;
         } else {
-            return $this->getEntriesWithWeight()->first()->getDeficit();
+            return 0;
         }
     }
 
