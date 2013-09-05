@@ -312,7 +312,12 @@ class Goal
         /**
          * Date for the most recent weigh-in
          */
-        $stats['lastWeighInDate'] = $this->user->getMostRecentWeighinDate()->format("m/d/Y");
+        if ($mostRecentWeighinDate = $this->user->getMostRecentWeighinDate()) {
+            $stats['lastWeighInDate'] = $mostRecentWeighinDate->format("m/d/Y");
+        } else {
+            $stats['lastWeighInDate'] = null;
+        }
+
         $stats['lastWeighInWeight'] = $this->user->getMostRecentWeighinWeight();
 
         /**
