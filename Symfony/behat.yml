@@ -1,0 +1,53 @@
+default:
+    paths:
+        features: features
+        bootstrap: features/bootstrap
+    context:
+#        class: FeatureContext
+        class: BConway\TrackerBundle\Features\Context\FeatureContext
+    formatter:
+        name: pretty,html
+        parameters:
+            decorated:              true
+            verbose:                true
+            time:                   true
+            language:               en
+            output_path:            null,test_report.html
+            multiline_arguments:    true
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: test
+                debug: true
+        Behat\MinkExtension\Extension:
+            base_url: 'http://kimweighttracker.dev/app_test.php/'
+            default_session: goutte
+            zombie: ~
+            goutte: ~
+            selenium2:
+                capabilities: { "browser": "firefox", "browserVersion": "23"}
+
+annotations:
+    paths:
+        features: features/annotations
+
+closures:
+    paths:
+        features: features/closures
+
+user:
+    filters:
+        tags:   "@user"
+
+goal:
+    filters:
+        tags:   "@goal"
+
+entry:
+    filters:
+        tags:   "@entry"
+
+behavior:
+    filters:
+        tags:   "@behavior"
