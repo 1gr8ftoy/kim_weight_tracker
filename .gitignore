@@ -1,22 +1,22 @@
 # Bootstrap
-Symfony/app/bootstrap*
+app/bootstrap*
 
 # Symfony directories
-Symfony/vendor/*
-Symfony/*/logs/*
-Symfony/*/cache/*
-Symfony/web/uploads/*
-Symfony/web/bundles/*
-Symfony/web/css/compiled/*
-Symfony/web/js/compiled/*
-Symfony/bin/*
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+web/css/compiled/*
+web/js/compiled/*
+bin/*
 
 # Composer binary
-Symfony/composer.phar
+composer.phar
 
 # Configuration files
-Symfony/app/config/parameters.ini
-Symfony/app/config/parameters.yml
+app/config/parameters.ini
+app/config/parameters.yml
 
 # Ignore phpStorm workspace
 .idea/*
