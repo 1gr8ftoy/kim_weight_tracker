@@ -1,8 +1,6 @@
 language: php
 
 php:
-  - 5.3.3
-  - 5.3
   - 5.4
 
 before_script:
@@ -15,13 +13,16 @@ before_script:
     - echo "127.0.0.1 kimweighttracker.dev" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
+    # Copy skeleton parameters file
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+
     # Update composer
     - composer self-update
     - composer install --dev --prefer-dist
 
-    - app/console doctrine:database:create -e=test > /dev/null
+    - app/console -n doctrine:database:create -e=test > /dev/null
 #    - app/console do:sc:cr -e=test > /dev/null
-    - app/console doctrine:migrations:migrate -e=test > /dev/null
+    - app/console -n doctrine:migrations:migrate -e=test > /dev/null
     - chmod -R 777 app/cache app/logs
     - app/console --env=test cache:clear
     - chmod -R 777 app/cache app/logs

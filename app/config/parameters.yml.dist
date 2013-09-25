@@ -13,8 +13,8 @@ parameters:
     mailer_user:                    ~
     mailer_password:                ~
 
-    fos_user_mailer_sendername:     ~
-    fos_user_mailer_fromaddress:    ~
+    fos_user_mailer_sendername: 'Weight goal tracker'
+    fos_user_mailer_fromaddress: no-reply@kim.bcipg.com
 
     locale:                         en
     secret:                         ThisTokenIsNotSoSecretChangeIt
