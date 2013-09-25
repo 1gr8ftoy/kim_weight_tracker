@@ -23,3 +23,5 @@ app/config/parameters.yml
 
 # System files
 .DS_Store
+
+/test_report.html
