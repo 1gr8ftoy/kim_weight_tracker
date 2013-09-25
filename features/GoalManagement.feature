@@ -12,10 +12,12 @@ Feature: User needs to be able to manage goals
      When I assign the goals to user "TestUser"
       And I save the goals to the database
       And I follow "Manage Goals"
+      And I wait until "div#entries_tables" is visible
      Then I should see 2 "ul#goals_list li.ui-menu-item" elements
 
   Scenario: User adds a goal
     Given I follow "Manage Goals"
+     When I wait until "div#entries_tables" is visible
      Then I should see 0 "ul#goals_list li.ui-menu-item" elements
      When I press "Create a new goal"
       And I wait for the response
@@ -32,6 +34,7 @@ Feature: User needs to be able to manage goals
      When I assign the goals to user "TestUser"
       And I save the goals to the database
       And I follow "Manage Goals"
+      And I wait until "div#entries_tables" is visible
      Then I should see 2 "ul#goals_list li.ui-menu-item" elements
      When I follow "ui-id-1"
       And I wait for the response
@@ -50,6 +53,7 @@ Feature: User needs to be able to manage goals
      When I assign the goals to user "TestUser"
       And I save the goals to the database
       And I follow "Manage Goals"
+      And I wait until "div#entries_tables" is visible
      Then I should see 2 "ul#goals_list li.ui-menu-item" elements
      When I follow "ui-id-1"
       And I wait for the response

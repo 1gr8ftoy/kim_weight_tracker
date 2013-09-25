@@ -61,6 +61,59 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
     }
 
     /**
+     * Wait until something is true before proceeding
+     * @param $lambda
+     * @param array $options
+     * @param int $wait
+     * @throws \Exception
+     * @return bool
+     */
+    public function spin ($lambda, $options = array(), $wait = 5)
+    {
+        for ($i = 0; $i < $wait; $i++)
+        {
+            try {
+                if ($lambda($this, $options)) {
+                    return true;
+                }
+            } catch (Exception $e) {
+                // do nothing
+            }
+
+            sleep(1);
+        }
+
+        $backtrace = debug_backtrace();
+
+        throw new \Exception(
+            "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
+            $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
+        );
+    }
+
+    /**
+     * @When /^(?:|I )wait until "(?P<element>(?:([^"]*)))" is visible$/
+     */
+    public function iWaitUntilIsVisible($element)
+    {
+        $options = array('field' => $element);
+
+        $this->spin(function($context, $options) {
+            $el = $context->getSession()->getPage()->findField($options['field']);
+
+            if (!is_object($el)) {
+                $el = $context->getSession()->getPage()->find('css', $options['field']);
+            }
+
+            if (is_object($el)) {
+                return $el->isVisible();
+            } else {
+                return false;
+            }
+        }, $options);
+    }
+
+    /**
      * Returns the Doctrine entity manager.
      *
      * @return Doctrine\ORM\EntityManager
@@ -655,6 +708,7 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
     {
         return array(
             new Given('I follow "Edit profile"'),
+            new When('I wait until "h2" is visible'),
             new Then('the "h2" element should contain "Edit profile"')
         );
     }

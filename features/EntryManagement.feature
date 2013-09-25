@@ -12,6 +12,7 @@ Feature: User needs to be able to manage entries
      When I assign the entries to user "TestUser"
       And I save the entries to the database
       And I follow "View History"
+      And I wait until "div#entries_tables" is visible
      Then I should see "Weight & Deficit Entries"
       And I should see 11 "table.entries_table tr" elements
       And I should not see "<< First"
@@ -37,6 +38,7 @@ Feature: User needs to be able to manage entries
      When I assign the entries to user "TestUser"
       And I save the entries to the database
       And I follow "View History"
+      And I wait until "div#entries_tables" is visible
      Then I should see "Weight & Deficit Entries"
       And I should see 11 "table.entries_table tr" elements
       And I should see "Currently displaying page 1 of 3"
@@ -78,6 +80,7 @@ Feature: User needs to be able to manage entries
       And I press "Create entry"
      Then I should see "Entry created successfully"
      When I follow "View History"
+      And I wait until "div#entries_tables" is visible
      Then I should see 1 "table.entries_table tr" element
      When I check "show_all_entries"
       And I wait for the response
@@ -88,9 +91,11 @@ Feature: User needs to be able to manage entries
      When I assign the entries to user "TestUser"
       And I save the entries to the database
       And I follow "View History"
+      And I wait until "div#entries_tables" is visible
      Then I should see "Weight & Deficit Entries"
       And I should see 2 "table.entries_table tr" elements
      When I click on the "table.entries_table tr:nth-of-type(2) td:nth-of-type(4) a" element
+      And I wait until "form#edit_entry" is visible
      Then I should see "Edit Entry"
      When I fill in "entry_weight" with "137"
       And I fill in "entry_deficit" with "566"
@@ -105,6 +110,7 @@ Feature: User needs to be able to manage entries
      When I assign the entries to user "TestUser"
       And I save the entries to the database
       And I follow "View History"
+      And I wait until "div#entries_tables" is visible
      Then I should see "Weight & Deficit Entries"
       And I should see 2 "table.entries_table tr" elements
      When I click on the "table.entries_table tr:nth-of-type(2) td:nth-of-type(5) a" element
