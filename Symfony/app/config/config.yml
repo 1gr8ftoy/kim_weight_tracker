@@ -103,8 +103,8 @@ jms_security_extra:
     # Allows you to specify access control rules for specific methods, such
     # as controller actions
     method_access_control:
-            ':loginAction$': 'isAnonymous()'
-            'BConwayTrackerBundle:.*:.*Action': 'hasRole("ROLE_USER")'
+        ':loginAction$': 'isAnonymous()'
+        'BConwayTrackerBundle:.*:.*Action': 'hasRole("ROLE_USER")'
 
     util:
         secure_random: ~
