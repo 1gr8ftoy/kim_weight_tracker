@@ -22,11 +22,14 @@ default:
                 debug: true
         Behat\MinkExtension\Extension:
             base_url: 'http://kimweighttracker.dev/app_test.php/'
+            javascript_session: sahi
             default_session: goutte
-            zombie: ~
+            sahi: ~
+            browser_name: firefox
+#            zombie: ~
             goutte: ~
-            selenium2:
-                capabilities: { "browser": "firefox" }
+#            selenium2:
+#                capabilities: { "browserName": "Google Chrome", "browser": "chrome" }
 
 annotations:
     paths:
