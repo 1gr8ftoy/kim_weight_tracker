@@ -68,7 +68,7 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
      * @throws \Exception
      * @return bool
      */
-    public function spin ($lambda, $options = array(), $wait = 5)
+    public function spin ($lambda, $options = array(), $wait = 60)
     {
         for ($i = 0; $i < $wait; $i++)
         {
