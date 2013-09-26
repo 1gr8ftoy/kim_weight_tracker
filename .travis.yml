@@ -21,12 +21,17 @@ before_script:
     - composer self-update
     - composer install --dev --prefer-dist
 
+    # Dump assets
+    - app/console assetic:dump --env=test
+
+    # Configure DB
     - app/console -n doctrine:database:create -e=test > /dev/null
 #    - app/console do:sc:cr -e=test > /dev/null
     - app/console -n doctrine:migrations:migrate -e=test > /dev/null
     - chmod -R 777 app/cache app/logs
     - app/console --env=test cache:warmup
     - chmod -R 777 app/cache app/logs
+
     # Setup selenium
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99.0"
