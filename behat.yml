@@ -28,10 +28,10 @@ default:
 #            browser_name: firefox
 #            zombie: ~
             goutte: ~
-#            selenium2:
-#                capabilities: { "browserName": "Google Chrome", "browser": "chrome" }
             selenium2:
-                wd_host: "http://localhost:8643/wd/hub"
+                capabilities: { "browser": "firefox" }
+#            selenium2:
+#                wd_host: "http://localhost:8643/wd/hub"
 
 annotations:
     paths:
