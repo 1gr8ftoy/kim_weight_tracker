@@ -706,9 +706,8 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
      */
     public function iNavigateToEditProfile()
     {
-        return array(
+        $steps = array(
             new Given('I follow "Edit profile"'),
-            new When('I wait until "h2" is visible'),
             new Then('the "h2" element should contain "Edit profile"')
         );
     }
