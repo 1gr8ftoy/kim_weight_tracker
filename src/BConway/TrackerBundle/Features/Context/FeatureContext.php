@@ -778,12 +778,4 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
         // ok, let's click on it
         $element->click();
     }
-
-    /**
-     * @When /^I sleep for (\d+) seconds$/
-     */
-    public function iSleepForSeconds($arg1)
-    {
-        sleep($arg1);
-    }
 }
