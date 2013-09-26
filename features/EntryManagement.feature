@@ -20,7 +20,8 @@ Feature: User needs to be able to manage entries
       And I should see "Next >"
       And I should see "Last >>"
      When I press "Next >"
-      And I wait for the response
+#      And I wait for the response
+      And I sleep for 5 seconds
      Then I should see "<< First"
       And I should see "< Prev"
       And I should see "Next >"

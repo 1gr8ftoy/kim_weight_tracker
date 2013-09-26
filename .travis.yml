@@ -40,4 +40,4 @@ before_script:
 #    - sahi-start.sh [SAHIHOME="~/sahi"]
 #    - phantomjs --webdriver=8643 2>&1 > /dev/null &
 
-script: bin/behat
+script: bin/behat "features/EntryManagement.feature:10"
