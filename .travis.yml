@@ -38,4 +38,4 @@ before_script:
     - "java -jar selenium-server-standalone-2.35.0.jar > /dev/null &"
     - sleep 5
 
-script: bin/behat "features/EntryManagement.feature"
+script: bin/behat
