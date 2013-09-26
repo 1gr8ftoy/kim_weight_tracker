@@ -435,7 +435,7 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
         assertEquals($stats['deficitProgress'], 7.34);
         assertEquals($stats['deficitSinceLastWeighin'], 900);
         assertEquals($stats['endDate'], (new \DateTime())->format('m/d/Y'));
-        assertEquals($stats['estimatedCurrentWeight'], 164.5);
+        assertEquals($stats['estimatedCurrentWeight'], 164.2);
         assertEquals($stats['goalDaysRemaining'], 1);
         assertEquals($stats['goalLength'], 31);
         assertEquals($stats['goalWeight'], 155);
