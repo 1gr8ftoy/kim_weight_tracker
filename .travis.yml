@@ -35,9 +35,9 @@ before_script:
 #    - "java -jar selenium-server-standalone-2.31.0.jar > /dev/null &"
 #    - sleep 5
 
-    - sahi-install.sh [SAHIHOME="~"]
-    - sahi-configure.sh [SAHIHOME="~/sahi"]
-    - sahi-start.sh [SAHIHOME="~/sahi"]
-
+#    - sahi-install.sh [SAHIHOME="~"]
+#    - sahi-configure.sh [SAHIHOME="~/sahi"]
+#    - sahi-start.sh [SAHIHOME="~/sahi"]
+    - phantomjs --webdriver=8643 2>&1 > null &
 
 script: bin/behat
